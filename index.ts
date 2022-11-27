@@ -44,31 +44,78 @@ app.get('/time/:time', (req, res) => {
 
 });
 
-app.get('/countries/:qtd', (req, res) => {
+app.get('/paises/:qtd', (req, res) => {
     let qtd = parseInt(req.params.qtd);
 
     let Countrys : Array<String> = [];
 
     let id = 0;
+    let value = 0;
+
+    let inc = false;
 
     for (let i = 0; i < qtd; i++) {
-        if (Countrys.indexOf(jogos[i].times[id]) == -1) {
-            Countrys.push(jogos[i].times[id])
+
+        if (value > jogos.length - 1) {
+            break;
+        }
+
+        if (Countrys.indexOf(jogos[value].times[id]) == -1) {
+            Countrys.push(jogos[value].times[id]);
         }
         else {
             i--;
         }
 
-        if (id == 0) {
-            id = 1;
+        if (inc) {
+            value++;
+            inc = false;
         }
         else {
-            id = 0;
+            inc = true;
+        }
+
+        id++;
+        id %= 2;
+
+        console.log(id + '   ' + value);
+    }
+
+    res.json(Countrys);
+});
+
+app.get('/paises', (req, res) => {
+    let Countrys : Array<String> = [];
+
+    for (let jogo of jogos) {
+        if (Countrys.indexOf(jogo.times[0]) == -1) {
+            Countrys.push(jogo.times[0])
+        }
+
+        if (Countrys.indexOf(jogo.times[1]) == -1) {
+            Countrys.push(jogo.times[1])
         }
     }
 
     res.json(Countrys);
-})
+
+});
+
+app.get('/data/:dia', (req, res) => {
+    let data = req.params.dia;
+    let JogosIncluidos : Array<Jogos> = [];
+
+    data = data.replace("-", "/");
+    data = data.replace("-", "/");
+
+    for (let jogo of jogos) {
+        if (jogo.data == data) {
+            JogosIncluidos.push(jogo);
+        }
+    }
+
+    return JogosIncluidos.length > 0 ? res.json(JogosIncluidos) :  res.json({erro: 'Nenhum jogo encontrado desse time!'});
+});
 
 var porta = process.env.PORT || 8080;
 
