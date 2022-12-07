@@ -2,7 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import cors from 'cors';
 
-import {Jogos, getJogos} from './Objects/jogos';
+import { Jogos, getJogos } from './Objects/jogos';
 
 const app = express();
 
@@ -77,8 +77,6 @@ app.get('/paises/:qtd', (req, res) => {
 
         id++;
         id %= 2;
-
-        console.log(id + '   ' + value);
     }
 
     res.json(Countrys);
