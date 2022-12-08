@@ -47,7 +47,7 @@ export const getJogos = () : Array<Jogos> => {
             data: ("21/11/2022"),
             horario: '10:00',
             times: ["Inglaterra", "Irã"],
-            bandeiras: ["https://static.todamateria.com.br/upload/ba/nd/bandeira_da_inglaterra_bb.jpg", "Flag_of_Iran.svg.webpFlag_of_Iran.svg.webp"],
+            bandeiras: ["https://static.todamateria.com.br/upload/ba/nd/bandeira_da_inglaterra_bb.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Flag_of_Iran.svg/1280px-Flag_of_Iran.svg.png"],
             grupo: 'B',
             jogadores: [["Jude Bellingham", "Bukayo Saka", "Raheem Sterling", "Marcus Rashford", "Jack Grealish"], ["Mehdi Taremi"]],
             resultado: "6 x 2",
